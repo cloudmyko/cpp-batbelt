@@ -3,27 +3,23 @@
 
 int main(){
 
-    bool val_check = false;
-    int r, g, b;
+    unsigned int r{0}, g{0}, b{0};
+    uint32_t total_val{0};
 
-    while (!val_check){
-        std::cout << "Red: ";
-        std::cin >> r;
-        std::cout << "Green: ";
-        std::cin >> g;
-        std::cout << "Blue: ";
-        std::cin >> b;
+    std::cout << "Enter R: ";
+    std::cin >> r;
+    std::cout << "Enter G: ";
+    std::cin >> g;
+    std::cout << "Enter B: ";
+    std::cin >> b;
 
-        if ((r >= 0 && r <= 255 ) && ( g>= 0 && g <= 255) && ( b >= 0 && b <= 255)){
-            val_check = true;
-        }
+    uint8_t red {static_cast<uint8_t>(r)};
+    uint8_t green {static_cast<uint8_t>(g)};
+    uint8_t blue {static_cast<uint8_t>(b)};
 
-        std::cout << "All values must be between 0 and 255\n";
-    }
+    total_val = (static_cast<uint32_t>(red << 16) | static_cast<uint32_t>(green << 8) | static_cast<uint32_t>(blue));
 
-    std::cout << r << " " << g << " " << b << std::endl;
-
-
-
+    std::cout << total_val << std::endl;
+    std::cout << "Hex: #" << std::hex << std::uppercase << total_val << std::endl;
     return 0;
 }
